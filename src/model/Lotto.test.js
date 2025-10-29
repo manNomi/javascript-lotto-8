@@ -38,4 +38,9 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 6]);
     }).not.toThrow('[ERROR]');
   });
+
+  test('로또 번호를 반환한다.', () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.numbers).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
