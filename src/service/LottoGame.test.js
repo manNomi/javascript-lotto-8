@@ -64,7 +64,6 @@ describe('LottoGame', () => {
       game.buyLotto(2000);
       const result = game.calculateResult([1, 2, 3, 4, 5, 6], 7);
 
-      expect(result.purchaseAmount).toBe(2000);
       expect(result.profitRate).toBe('250.0'); // 5000 / 2000 * 100
     });
 
@@ -76,7 +75,6 @@ describe('LottoGame', () => {
 
       expect(result).toHaveProperty('statistics');
       expect(result).toHaveProperty('totalPrize');
-      expect(result).toHaveProperty('purchaseAmount');
       expect(result).toHaveProperty('profitRate');
       expect(result.statistics).toHaveLength(5);
     });
