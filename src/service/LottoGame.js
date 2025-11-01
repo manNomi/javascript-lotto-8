@@ -31,10 +31,24 @@ export default class LottoGame {
     const profitRate = this.#calculateProfitRate(totalPrize);
 
     return {
-      statistics,
-      totalPrize,
+      messages: this.#formatStatistics(statistics),
       profitRate,
     };
+  }
+
+  #formatStatistics(statistics) {
+    return statistics.map((stat) => {
+      const bonusText = this.#getBonusText(stat.bonus);
+      const prizeText = stat.prize.toLocaleString();
+      return `${stat.match}개 일치${bonusText} (${prizeText}원) - ${stat.count}개`;
+    });
+  }
+
+  #getBonusText(hasBonus) {
+    if (hasBonus) {
+      return ', 보너스 볼 일치';
+    }
+    return '';
   }
 
   #checkMatch(lotto, winningNumbers, bonusNumber) {

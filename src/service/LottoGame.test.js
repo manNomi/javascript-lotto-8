@@ -1,5 +1,5 @@
 import LottoGame from './LottoGame.js';
-import { mockRandoms } from '../../__tests__/mockTest.test.js';
+import { mockRandoms } from '../util/mockUtils.js';
 
 describe('LottoGame', () => {
   let game;
@@ -16,8 +16,8 @@ describe('LottoGame', () => {
       game.buyLotto(1000);
       const result = game.calculateResult([1, 2, 3, 4, 5, 6], 7);
 
-      expect(result.totalPrize).toBe(0);
       expect(result.profitRate).toBe('0.0');
+      expect(result.messages).toHaveLength(5);
     });
 
     test('2등 당첨 - 5개 + 보너스', () => {
@@ -26,8 +26,8 @@ describe('LottoGame', () => {
       game.buyLotto(1000);
       const result = game.calculateResult([1, 2, 3, 4, 5, 6], 7);
 
-      expect(result.statistics[3].count).toBe(1); // 2등
-      expect(result.totalPrize).toBe(30000000);
+      expect(result.messages[3]).toContain('5개 일치, 보너스 볼 일치');
+      expect(result.messages[3]).toContain('1개');
     });
 
     test('1등 당첨', () => {
@@ -36,8 +36,8 @@ describe('LottoGame', () => {
       game.buyLotto(1000);
       const result = game.calculateResult([1, 2, 3, 4, 5, 6], 7);
 
-      expect(result.statistics[4].count).toBe(1);
-      expect(result.totalPrize).toBe(2000000000);
+      expect(result.messages[4]).toContain('6개 일치');
+      expect(result.messages[4]).toContain('1개');
     });
 
     test('여러 장 구매 - 복합 당첨', () => {
@@ -50,9 +50,8 @@ describe('LottoGame', () => {
       game.buyLotto(3000);
       const result = game.calculateResult([1, 2, 3, 4, 5, 6], 7);
 
-      expect(result.statistics[0].count).toBe(1); // 3개 일치 1개
-      expect(result.statistics[4].count).toBe(1); // 1등 1개
-      expect(result.totalPrize).toBe(2000005000);
+      expect(result.messages[0]).toContain('1개'); // 3개 일치 1개
+      expect(result.messages[4]).toContain('1개'); // 1등 1개
     });
 
     test('수익률 계산', () => {
@@ -73,10 +72,10 @@ describe('LottoGame', () => {
       game.buyLotto(1000);
       const result = game.calculateResult([1, 2, 3, 4, 5, 6], 7);
 
-      expect(result).toHaveProperty('statistics');
-      expect(result).toHaveProperty('totalPrize');
+      expect(result).toHaveProperty('messages');
       expect(result).toHaveProperty('profitRate');
-      expect(result.statistics).toHaveLength(5);
+      expect(result.messages).toHaveLength(5);
+      expect(typeof result.messages[0]).toBe('string');
     });
   });
 });
