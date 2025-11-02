@@ -1,5 +1,5 @@
 import LottoGame from './LottoGame.js';
-import { mockRandoms } from '../../__tests__/mockUtils.js';
+import { mockRandoms } from '../../test/mockUtils.js';
 
 describe('LottoGame', () => {
   let game;

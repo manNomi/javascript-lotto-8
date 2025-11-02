@@ -23,9 +23,3 @@ export const getLogSpy = () => {
   logSpy.mockClear();
   return logSpy;
 };
-
-describe('Mock Utils', () => {
-  test('dummy test', () => {
-    expect(true).toBe(true);
-  });
-});
