@@ -1,5 +1,6 @@
 import { getRandomNumbers } from '../util/rand.js';
 import Lotto from '../model/Lotto.js';
+import { OUTPUT_MESSAGE } from '../constants/message.js';
 
 export default class LottoGame {
   #lottos = [];
@@ -42,14 +43,17 @@ export default class LottoGame {
     return statistics.map((stat) => {
       const bonusText = this.#getBonusText(stat.bonus);
       const prizeText = stat.prize.toLocaleString();
-      return `${stat.match}개 일치${bonusText} (${prizeText}원) - ${stat.count}개`;
+      return OUTPUT_MESSAGE.MATCH_RESULT(
+        stat.match,
+        bonusText,
+        prizeText,
+        stat.count,
+      );
     });
   }
 
   #getBonusText(hasBonus) {
-    if (hasBonus) {
-      return ', 보너스 볼 일치';
-    }
+    if (hasBonus) return ', 보너스 볼 일치';
     return '';
   }
 

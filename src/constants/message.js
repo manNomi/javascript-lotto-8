@@ -36,5 +36,7 @@ export const INPUT_MESSAGE = {
 export const OUTPUT_MESSAGE = {
   PURCHASE_COUNT: (count) => `\n${count}개를 구매했습니다.`,
   WINNING_STATISTICS: '\n당첨 통계\n---',
+  MATCH_RESULT: (match, bonusText, prize, count) =>
+    `${match}개 일치${bonusText} (${prize}원) - ${count}개`,
   PROFIT_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
 };
