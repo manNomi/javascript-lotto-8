@@ -5,8 +5,7 @@ const outputView = {
   printLottos(lottos) {
     Console.print(OUTPUT_MESSAGE.PURCHASE_COUNT(lottos.length));
     lottos.forEach((numbers) => {
-      const sorted = [...numbers].sort((a, b) => a - b);
-      Console.print(`[${sorted.join(', ')}]`);
+      Console.print(`[${numbers.join(', ')}]`);
     });
   },
 

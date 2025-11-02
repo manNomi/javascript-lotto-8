@@ -17,7 +17,9 @@ export default class LottoGame {
   }
 
   get lottos() {
-    return this.#lottos.map((lotto) => lotto.numbers);
+    return this.#lottos.map((lotto) =>
+      [...lotto.numbers].sort((a, b) => a - b),
+    );
   }
 
   calculateResult(winningNumbers, bonusNumber) {
