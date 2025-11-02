@@ -16,14 +16,18 @@ import {
 
 class App {
   async run() {
-    const purchaseAmount = await this.#getPurchaseAmount();
-    const lottoGame = await this.#purchaseLottos(purchaseAmount);
+    try {
+      const purchaseAmount = await this.#getPurchaseAmount();
+      const lottoGame = await this.#purchaseLottos(purchaseAmount);
 
-    const { winningNumbers, bonusNumber } = await this.#getWinningInfo();
+      const { winningNumbers, bonusNumber } = await this.#getWinningInfo();
 
-    const result = lottoGame.calculateResult(winningNumbers, bonusNumber);
+      const result = lottoGame.calculateResult(winningNumbers, bonusNumber);
 
-    outputView.printResult(result);
+      outputView.printResult(result);
+    } catch (error) {
+      outputView.printError(error.message);
+    }
   }
 
   async #getPurchaseAmount() {

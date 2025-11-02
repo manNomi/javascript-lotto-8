@@ -24,3 +24,8 @@ export const getLogSpy = () => {
   return logSpy;
 };
 
+describe('Mock Utils', () => {
+  test('dummy test', () => {
+    expect(true).toBe(true);
+  });
+});
