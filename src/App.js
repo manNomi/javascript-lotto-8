@@ -16,28 +16,27 @@ import {
 
 class App {
   async run() {
-    try {
-      const lottoGame = await this.#purchaseLottos();
-      const { winningNumbers, bonusNumber } = await this.#getWinningInfo();
-      const result = lottoGame.calculateResult(winningNumbers, bonusNumber);
+    const purchaseAmount = await this.#getPurchaseAmount();
+    const lottoGame = await this.#purchaseLottos(purchaseAmount);
 
-      outputView.printResult(result);
-    } catch (error) {
-      outputView.printError(error.message);
-    }
+    const { winningNumbers, bonusNumber } = await this.#getWinningInfo();
+
+    const result = lottoGame.calculateResult(winningNumbers, bonusNumber);
+
+    outputView.printResult(result);
   }
 
-  async #purchaseLottos() {
+  async #getPurchaseAmount() {
     const purchaseInput = await inputView.readLineMessage(
       INPUT_MESSAGE.ASK_PURCHASE_AMOUNT,
     );
-    const money = this.#validatePurchaseAmount(purchaseInput);
+    return this.#validatePurchaseAmount(purchaseInput);
+  }
 
+  async #purchaseLottos(purchaseAmount) {
     const lottoGame = new LottoGame();
-    lottoGame.buyLotto(money);
-
+    lottoGame.buyLotto(purchaseAmount);
     outputView.printLottos(lottoGame.lottos);
-
     return lottoGame;
   }
 
