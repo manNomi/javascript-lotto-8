@@ -1,3 +1,5 @@
+export const ERROR_PREFIX = '[ERROR]';
+
 export const ERROR_MESSAGE = {
   PURCHASE: {
     EMPTY: '[ERROR] 구매 금액을 입력해주세요.',
@@ -20,7 +22,8 @@ export const ERROR_MESSAGE = {
     NOT_NUMBER: '[ERROR] 보너스 번호는 숫자여야 합니다.',
     OUT_OF_RANGE: (min, max) =>
       `[ERROR] 보너스 번호는 ${min}부터 ${max} 사이의 숫자여야 합니다.`,
-    DUPLICATE_WITH_WINNING: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.',
+    DUPLICATE_WITH_WINNING:
+      '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.',
   },
 };
 
