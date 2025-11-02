@@ -39,6 +39,10 @@ export default class LottoGame {
     };
   }
 
+  /**
+   * @param {Array} statistics - 당첨 통계
+   * @returns {Array} - 당첨 통계 형식
+   */
   #formatStatistics(statistics) {
     return statistics.map((stat) => {
       const bonusText = this.#getBonusText(stat.bonus);
@@ -67,6 +71,10 @@ export default class LottoGame {
     return { matchCount, hasBonus };
   }
 
+  /**
+   * @param {Array} matchResults - 당첨 결과
+   * @returns {Object} - 당첨 통계
+   */
   #countMatchResults(matchResults) {
     const counts = { fifth: 0, fourth: 0, third: 0, second: 0, first: 0 };
 
@@ -81,6 +89,10 @@ export default class LottoGame {
     return counts;
   }
 
+  /**
+   * @param {Object} counts - 당첨 통계
+   * @returns {Array} - 당첨 통계 형식
+   */
   #buildStatistics(counts) {
     return [
       { match: 3, prize: 5000, count: counts.fifth },
